@@ -1,4 +1,4 @@
-import { Router, Response } from 'express';
+import { Router, Response, NextFunction } from 'express';
 import { z } from 'zod';
 import { query } from '../config/database';
 import { authenticate, AuthRequest } from '../middleware/auth';

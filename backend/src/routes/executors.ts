@@ -1,4 +1,4 @@
-import { Router, Response } from 'express';
+import { Router, Response, NextFunction } from 'express';
 import crypto from 'crypto';
 import { z } from 'zod';
 import { query } from '../config/database';

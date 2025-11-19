@@ -1,4 +1,4 @@
-import { Router, Response } from 'express';
+import { Router, Response, NextFunction } from 'express';
 import { z } from 'zod';
 import { query } from '../config/database';
 import { authenticate, AuthRequest } from '../middleware/auth';
@@ -8,7 +8,7 @@ import { AppError } from '../middleware/errorHandler';
 const router = Router();
 
 // GET /api/triggers/status
-router.get('/status', authenticate, async (req: AuthRequest, res: Response, next) => {
+router.get('/status', authenticate, async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const userId = req.userId!;
 
@@ -86,7 +86,7 @@ router.get('/status', authenticate, async (req: AuthRequest, res: Response, next
 router.post(
   '/proof-of-life',
   authenticate,
-  async (req: AuthRequest, res: Response, next) => {
+  async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
       const userId = req.userId!;
       const today = new Date().toISOString().split('T')[0];
@@ -208,7 +208,7 @@ router.post(
 );
 
 // GET /api/triggers/history
-router.get('/history', authenticate, async (req: AuthRequest, res: Response, next) => {
+router.get('/history', authenticate, async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const userId = req.userId!;
 
