@@ -32,7 +32,7 @@ router.get(
   '/:vaultId',
   memorialRateLimiter,
   optionalAuth,
-  async (req: AuthRequest, res: Response, next) => {
+  async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
       const { vaultId } = req.params;
 
@@ -153,7 +153,7 @@ router.post(
   memorialRateLimiter,
   optionalAuth,
   validate(reactSchema),
-  async (req: AuthRequest, res: Response, next) => {
+  async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
       const { vaultId } = req.params;
       const { reaction } = req.body;
@@ -209,7 +209,7 @@ router.post(
   memorialRateLimiter,
   optionalAuth,
   validate(commentSchema),
-  async (req: AuthRequest, res: Response, next) => {
+  async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
       const { vaultId } = req.params;
       const { content, parentCommentId } = req.body;
@@ -256,7 +256,7 @@ router.get(
   '/:vaultId/stats',
   memorialRateLimiter,
   optionalAuth,
-  async (req: AuthRequest, res: Response, next) => {
+  async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
       const { vaultId } = req.params;
 

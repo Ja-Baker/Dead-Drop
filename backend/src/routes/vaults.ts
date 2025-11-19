@@ -129,7 +129,7 @@ router.post(
   '/',
   authenticate,
   validate(createVaultSchema),
-  async (req: AuthRequest, res: Response, next) => {
+  async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
       const userId = req.userId!;
       const subscriptionTier = req.user?.subscriptionTier || 'free';
@@ -200,7 +200,7 @@ router.put(
   '/:id',
   authenticate,
   validate(updateVaultSchema),
-  async (req: AuthRequest, res: Response, next) => {
+  async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
       const userId = req.userId!;

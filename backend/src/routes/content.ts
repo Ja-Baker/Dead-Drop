@@ -44,7 +44,7 @@ router.post(
   uploadRateLimiter,
   upload.single('file'),
   validate(createContentSchema),
-  async (req: AuthRequest, res: Response, next) => {
+  async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
       const { vaultId } = req.params;
       const userId = req.userId!;
@@ -153,7 +153,7 @@ router.post(
 router.delete(
   '/:vaultId/content/:contentId',
   authenticate,
-  async (req: AuthRequest, res: Response, next) => {
+  async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
       const { vaultId, contentId } = req.params;
       const userId = req.userId!;

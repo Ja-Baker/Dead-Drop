@@ -28,7 +28,7 @@ const updateExecutorSchema = z.object({
 });
 
 // GET /api/executors
-router.get('/', authenticate, async (req: AuthRequest, res: Response, next) => {
+router.get('/', authenticate, async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const userId = req.userId!;
 
@@ -72,7 +72,7 @@ router.post(
   '/invite',
   authenticate,
   validate(inviteExecutorSchema),
-  async (req: AuthRequest, res: Response, next) => {
+  async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
       const userId = req.userId!;
       const subscriptionTier = req.user?.subscriptionTier || 'free';
@@ -161,7 +161,7 @@ router.put(
   '/:id/permissions',
   authenticate,
   validate(updateExecutorSchema),
-  async (req: AuthRequest, res: Response, next) => {
+  async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
       const userId = req.userId!;
@@ -222,7 +222,7 @@ router.delete('/:id', authenticate, async (req: AuthRequest, res: Response, next
 router.post(
   '/vote-trigger',
   authenticate,
-  async (req: AuthRequest, res: Response, next) => {
+  async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
       // This will be implemented in Sprint 2 with trigger system
       res.status(501).json({ error: 'Not implemented yet' });

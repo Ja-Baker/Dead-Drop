@@ -44,7 +44,7 @@ router.post(
   '/signup',
   authRateLimiter,
   validate(signupSchema),
-  async (req, res: Response, next) => {
+  async (req, res: Response, next: NextFunction) => {
     try {
       const { email, password, ageVerified } = req.body;
 
@@ -109,7 +109,7 @@ router.post(
   '/login',
   authRateLimiter,
   validate(loginSchema),
-  async (req, res: Response, next) => {
+  async (req, res: Response, next: NextFunction) => {
     try {
       const { email, password } = req.body;
 
@@ -173,7 +173,7 @@ router.post(
 router.post(
   '/refresh',
   validate(refreshSchema),
-  async (req, res: Response, next) => {
+  async (req, res: Response, next: NextFunction) => {
     try {
       const { refreshToken } = req.body;
 

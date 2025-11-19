@@ -49,7 +49,7 @@ router.post(
   '/checkout',
   authenticate,
   validate(checkoutSchema),
-  async (req: AuthRequest, res: Response, next) => {
+  async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
       if (!stripe) {
         throw new AppError('Stripe not configured', 500);
