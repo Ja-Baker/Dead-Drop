@@ -1,0 +1,80 @@
+.countdown-timer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  border: var(--border-heavy) solid var(--corpse-gray);
+  background-color: var(--ash-gray);
+  overflow: hidden;
+}
+
+.countdown-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  z-index: 1;
+}
+
+.countdown-number {
+  font-family: var(--font-mono);
+  font-size: 72px;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--ghost-white);
+  text-shadow: 0 0 20px currentColor;
+}
+
+.countdown-label {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  letter-spacing: 0.15em;
+  color: var(--corpse-gray);
+  text-transform: uppercase;
+}
+
+/* Urgency States */
+.countdown-timer.safe {
+  border-color: var(--corpse-gray);
+}
+
+.countdown-timer.safe .countdown-number {
+  color: var(--ghost-white);
+}
+
+.countdown-timer.warning {
+  border-color: #FFA500;
+}
+
+.countdown-timer.warning .countdown-number {
+  color: #FFA500;
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+.countdown-timer.urgent {
+  border-color: var(--blood-red);
+  animation: glow-pulse 1.5s ease-in-out infinite;
+}
+
+.countdown-timer.urgent .countdown-number {
+  color: var(--blood-red);
+  animation: heartbeat 1s ease-in-out infinite;
+}
+
+/* Pulsing background for urgent state */
+.countdown-pulse {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255, 0, 0, 0.2) 0%, transparent 70%);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  pointer-events: none;
+}
+
+/* Mobile adjustments */
+@media (max-width: 375px) {
+  .countdown-number {
+    font-size: 56px;
+  }
+}

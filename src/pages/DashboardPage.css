@@ -100,8 +100,101 @@
   margin: 0;
 }
 
+/* Stats Grid */
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-sm);
+}
+
+.stat-card {
+  padding: var(--space-lg);
+  background-color: var(--ash-gray);
+  border: var(--border-thick) solid var(--corpse-gray);
+  text-align: center;
+  transition: all var(--transition-base);
+}
+
+.stat-card:hover {
+  border-color: var(--blood-red);
+  transform: translateY(-2px);
+}
+
+.stat-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-3xl);
+  font-weight: 900;
+  color: var(--blood-red);
+  line-height: 1;
+  margin-bottom: var(--space-sm);
+}
+
+.stat-label {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  color: var(--corpse-gray);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Dashboard Actions */
+.dashboard-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* Dark Humor Reminder */
+.dashboard-reminder {
+  padding: var(--space-xl);
+  border: var(--border-thick) solid var(--blood-red);
+  background: linear-gradient(135deg, var(--ash-gray) 0%, var(--void-black) 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-reminder::before {
+  content: '⚠️';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 200px;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.reminder-text {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--blood-red);
+  margin: 0 0 var(--space-sm) 0;
+  letter-spacing: 0.05em;
+  position: relative;
+  z-index: 1;
+}
+
+.reminder-subtext {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--ghost-white);
+  margin: 0;
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+
 @media (max-width: 375px) {
   .vaults-grid {
     grid-template-columns: 1fr;
+  }
+
+  .dashboard-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .stat-value {
+    font-size: var(--text-2xl);
   }
 }

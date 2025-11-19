@@ -1,0 +1,248 @@
+.memorial-page {
+  min-height: 100vh;
+  background-color: var(--void-black);
+  position: relative;
+}
+
+/* Add film grain effect */
+.memorial-page::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 4px);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.memorial-content {
+  padding: var(--space-xl) var(--space-lg);
+  padding-bottom: var(--space-3xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+  position: relative;
+  z-index: 2;
+}
+
+/* Death Notice */
+.death-notice {
+  text-align: center;
+  padding: var(--space-2xl) var(--space-lg);
+  border: var(--border-heavy) solid var(--blood-red);
+  background: linear-gradient(180deg, var(--ash-gray) 0%, var(--void-black) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.death-notice::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--blood-red);
+  box-shadow: 0 0 20px var(--blood-red);
+}
+
+.death-notice-icon {
+  font-size: 80px;
+  line-height: 1;
+  margin-bottom: var(--space-md);
+  filter: drop-shadow(0 0 20px var(--blood-red));
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+.death-notice-title {
+  font-size: var(--text-xl);
+  color: var(--corpse-gray);
+  margin: 0 0 var(--space-sm) 0;
+  letter-spacing: 0.2em;
+}
+
+.death-notice-name {
+  font-size: var(--text-3xl);
+  color: var(--ghost-white);
+  margin: 0 0 var(--space-md) 0;
+  letter-spacing: 0.05em;
+  text-shadow: 2px 2px 0 var(--blood-red);
+}
+
+.death-notice-date {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--corpse-gray);
+  margin: 0 0 var(--space-lg) 0;
+}
+
+.death-notice-tagline {
+  font-size: var(--text-base);
+  color: var(--blood-red);
+  font-style: italic;
+  margin: 0;
+}
+
+/* Vault Header */
+.memorial-vault-header {
+  text-align: center;
+  padding: var(--space-xl);
+  border: var(--border-thick) solid var(--corpse-gray);
+  background-color: var(--ash-gray);
+}
+
+.memorial-vault-emoji {
+  font-size: 64px;
+  line-height: 1;
+  margin-bottom: var(--space-md);
+}
+
+.memorial-vault-name {
+  font-size: var(--text-2xl);
+  color: var(--ghost-white);
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.memorial-vault-meta {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--corpse-gray);
+  margin: 0;
+}
+
+/* Content Section */
+.memorial-content-section,
+.memorial-reactions-section,
+.memorial-comments-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.memorial-section-title {
+  font-size: var(--text-lg);
+  color: var(--ghost-white);
+  padding-bottom: var(--space-sm);
+  border-bottom: var(--border-thin) solid var(--blood-red);
+  margin: 0;
+}
+
+.memorial-empty,
+.memorial-comments-empty {
+  text-align: center;
+  padding: var(--space-2xl);
+  border: var(--border-thick) dashed var(--corpse-gray);
+  color: var(--corpse-gray);
+  font-family: var(--font-display);
+}
+
+.memorial-empty-sub,
+.memorial-comments-empty-sub {
+  font-size: var(--text-sm);
+  font-style: italic;
+  margin-top: var(--space-sm);
+  opacity: 0.7;
+}
+
+.memorial-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.memorial-item {
+  padding: var(--space-md);
+  background-color: var(--ash-gray);
+  border: var(--border-thin) solid var(--corpse-gray);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.memorial-item-type {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--blood-red);
+  font-weight: 700;
+}
+
+.memorial-item-name {
+  font-size: var(--text-sm);
+  color: var(--ghost-white);
+}
+
+/* Reactions */
+.memorial-reactions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-sm);
+}
+
+.memorial-reaction-btn {
+  padding: var(--space-md);
+  background-color: var(--ash-gray);
+  border: var(--border-thick) solid var(--corpse-gray);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.memorial-reaction-emoji {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.memorial-reaction-count {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--corpse-gray);
+}
+
+/* CTA */
+.memorial-cta {
+  margin-top: var(--space-xl);
+  padding: var(--space-xl);
+  border: var(--border-heavy) solid var(--blood-red);
+  background-color: var(--ash-gray);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.memorial-cta-text {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--blood-red);
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+/* Error State */
+.memorial-error {
+  padding: var(--space-3xl);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+.memorial-error-icon {
+  font-size: 100px;
+  margin: 0;
+}
+
+.memorial-error-text {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  color: var(--corpse-gray);
+  margin: 0;
+}

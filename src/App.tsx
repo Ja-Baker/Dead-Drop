@@ -8,6 +8,7 @@ import { VaultCreatePage } from './pages/VaultCreatePage';
 import { VaultDetailPage } from './pages/VaultDetailPage';
 import { ExecutorsPage } from './pages/ExecutorsPage';
 import { SettingsPage } from './pages/SettingsPage';
+import { MemorialPage } from './pages/MemorialPage';
 
 // Protected route wrapper
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -82,6 +83,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <SettingsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/memorial/:id"
+            element={
+              <ProtectedRoute>
+                <MemorialPage />
               </ProtectedRoute>
             }
           />
