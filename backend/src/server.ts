@@ -37,6 +37,25 @@ app.get('/health', (req: Request, res: Response) => {
   res.json({ status: 'ok', message: 'Still alive' });
 });
 
+// Root endpoint
+app.get('/', (req: Request, res: Response) => {
+  res.json({
+    name: 'Dead Drop API',
+    version: '1.0.0',
+    status: 'alive',
+    message: '🪦 YOUR FINAL DROP',
+    endpoints: {
+      health: '/health',
+      auth: '/api/auth',
+      vaults: '/api/vaults',
+      executors: '/api/executors',
+      triggers: '/api/triggers',
+      memorial: '/api/memorial',
+      subscription: '/api/subscription'
+    }
+  });
+});
+
 // API routes
 app.use('/api/auth', authRoutes);
 app.use('/api/vaults', apiRateLimiter, vaultRoutes);
