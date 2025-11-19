@@ -1,0 +1,136 @@
+.home-page {
+  text-align: center;
+}
+
+.home-hero {
+  margin-bottom: 60px;
+}
+
+.home-hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  letter-spacing: 4px;
+}
+
+.home-subtitle {
+  font-size: 24px;
+  margin-bottom: 30px;
+  color: #ff0000;
+}
+
+.home-description {
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #cccccc;
+}
+
+.home-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.btn {
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid #ffffff;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-primary {
+  background-color: #ff0000;
+  color: #ffffff;
+  border-color: #ff0000;
+}
+
+.btn-primary:hover {
+  background-color: #cc0000;
+  border-color: #cc0000;
+}
+
+.btn-secondary {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.home-stats {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 48px;
+  font-weight: bold;
+  color: #ff0000;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.home-tier {
+  padding: 20px;
+  border: 1px solid #ffffff;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.home-tier p {
+  margin-bottom: 12px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.upgrade-link {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #ff0000;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.upgrade-link:hover {
+  background-color: #cc0000;
+}
+
+@media (max-width: 768px) {
+  .home-hero h1 {
+    font-size: 32px;
+  }
+  
+  .home-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .home-stats {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+

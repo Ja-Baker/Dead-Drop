@@ -1,0 +1,14 @@
+{
+  "name": "@dead-drop/shared",
+  "version": "1.0.0",
+  "description": "Shared types and utilities for Dead Drop",
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
+

@@ -1,0 +1,21 @@
+{
+  "name": "dead-drop",
+  "version": "1.0.0",
+  "description": "A dead man's switch for your digital soul",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "web",
+    "shared"
+  ],
+  "scripts": {
+    "dev:backend": "cd backend && npm run dev",
+    "dev:web": "cd web && npm run dev",
+    "build:backend": "cd backend && npm run build",
+    "build:web": "cd web && npm run build"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
+

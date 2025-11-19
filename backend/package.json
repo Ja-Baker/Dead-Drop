@@ -1,0 +1,44 @@
+{
+  "name": "@dead-drop/backend",
+  "version": "1.0.0",
+  "description": "Dead Drop API Server",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "migrate": "tsx src/db/migrate.ts",
+    "migrate:create": "tsx src/db/create-migration.ts",
+    "job:monitor-triggers": "tsx src/jobs/trigger-monitor.ts"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "pg": "^8.11.3",
+    "redis": "^4.6.10",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "zod": "^3.22.4",
+    "dotenv": "^16.3.1",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "express-rate-limit": "^7.1.5",
+    "multer": "^1.4.5-lts.1",
+    "speakeasy": "^2.0.0",
+    "qrcode": "^1.5.3",
+    "@aws-sdk/client-s3": "^3.490.0",
+    "sharp": "^0.32.6",
+    "stripe": "^14.9.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.5",
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/multer": "^1.4.11",
+    "@types/qrcode": "^1.5.5",
+    "@types/speakeasy": "^2.0.10",
+    "typescript": "^5.3.3",
+    "tsx": "^4.7.0"
+  }
+}
+

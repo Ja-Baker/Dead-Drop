@@ -1,0 +1,97 @@
+.memorial-page {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.memorial-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #ffffff;
+}
+
+.memorial-header h1 {
+  font-size: 42px;
+  margin-bottom: 16px;
+}
+
+.memorial-icon {
+  font-size: 64px;
+}
+
+.memorial-content {
+  margin-bottom: 60px;
+}
+
+.content-item {
+  margin-bottom: 40px;
+}
+
+.content-image {
+  width: 100%;
+  max-width: 800px;
+  border: 1px solid #ffffff;
+}
+
+.content-text {
+  padding: 24px;
+  border: 1px solid #ffffff;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.memorial-reactions,
+.memorial-comments {
+  margin-bottom: 40px;
+  padding: 24px;
+  border: 1px solid #ffffff;
+}
+
+.memorial-reactions h2,
+.memorial-comments h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.reactions-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.reaction-btn {
+  padding: 12px 20px;
+  background-color: #000000;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.reaction-btn:hover {
+  background-color: #1a1a1a;
+}
+
+.comment {
+  padding: 16px;
+  border-bottom: 1px solid #333333;
+  margin-bottom: 16px;
+}
+
+.comment:last-child {
+  border-bottom: none;
+}
+
+.comment-author {
+  font-size: 12px;
+  color: #cccccc;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.comment-content {
+  font-size: 14px;
+  line-height: 1.5;
+}
+

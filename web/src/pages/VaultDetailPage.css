@@ -1,0 +1,57 @@
+.vault-detail-page {
+  max-width: 800px;
+}
+
+.vault-header {
+  margin-bottom: 40px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: #cccccc;
+  font-size: 14px;
+}
+
+.back-link:hover {
+  color: #ff0000;
+}
+
+.vault-header h1 {
+  font-size: 36px;
+  letter-spacing: 2px;
+}
+
+.vault-info {
+  border: 1px solid #ffffff;
+  padding: 24px;
+  margin-bottom: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-item label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #cccccc;
+}
+
+.info-item span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.vault-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
