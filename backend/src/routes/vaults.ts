@@ -35,7 +35,7 @@ const updateVaultSchema = z.object({
 });
 
 // GET /api/vaults
-router.get('/', authenticate, async (req: AuthRequest, res: Response, next) => {
+router.get('/', authenticate, async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const userId = req.userId!;
 
@@ -83,7 +83,7 @@ router.get('/', authenticate, async (req: AuthRequest, res: Response, next) => {
 });
 
 // GET /api/vaults/:id
-router.get('/:id', authenticate, async (req: AuthRequest, res: Response, next) => {
+router.get('/:id', authenticate, async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
     const userId = req.userId!;
@@ -302,7 +302,7 @@ router.put(
 );
 
 // DELETE /api/vaults/:id
-router.delete('/:id', authenticate, async (req: AuthRequest, res: Response, next) => {
+router.delete('/:id', authenticate, async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
     const userId = req.userId!;
@@ -323,7 +323,7 @@ router.delete('/:id', authenticate, async (req: AuthRequest, res: Response, next
 });
 
 // GET /api/vaults/:id/preview
-router.get('/:id/preview', authenticate, async (req: AuthRequest, res: Response, next) => {
+router.get('/:id/preview', authenticate, async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
     const userId = req.userId!;

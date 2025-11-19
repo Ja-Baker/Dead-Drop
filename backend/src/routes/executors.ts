@@ -198,7 +198,7 @@ router.put(
 );
 
 // DELETE /api/executors/:id
-router.delete('/:id', authenticate, async (req: AuthRequest, res: Response, next) => {
+router.delete('/:id', authenticate, async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
     const userId = req.userId!;

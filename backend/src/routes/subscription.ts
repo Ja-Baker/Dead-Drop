@@ -19,7 +19,7 @@ const checkoutSchema = z.object({
 });
 
 // GET /api/subscription
-router.get('/', authenticate, async (req: AuthRequest, res: Response, next) => {
+router.get('/', authenticate, async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const userId = req.userId!;
 
@@ -122,7 +122,7 @@ router.post(
 );
 
 // POST /api/subscription/cancel
-router.post('/cancel', authenticate, async (req: AuthRequest, res: Response, next) => {
+router.post('/cancel', authenticate, async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     if (!stripe) {
       throw new AppError('Stripe not configured', 500);
@@ -171,7 +171,7 @@ router.post('/cancel', authenticate, async (req: AuthRequest, res: Response, nex
 });
 
 // GET /api/subscription/invoices
-router.get('/invoices', authenticate, async (req: AuthRequest, res: Response, next) => {
+router.get('/invoices', authenticate, async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     if (!stripe) {
       throw new AppError('Stripe not configured', 500);
