@@ -1,0 +1,21 @@
+{
+  "name": "dead-drop-backend",
+  "version": "0.1.0",
+  "description": "Dead Drop MVP API",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "NODE_ENV=development nodemon server.js",
+    "test": "node --test tests"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "date-fns": "^3.6.0",
+    "express": "^4.19.2",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "supertest": "^7.1.1"
+  }
+}

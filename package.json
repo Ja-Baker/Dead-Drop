@@ -1,0 +1,10 @@
+{
+  "name": "dead-drop-monorepo",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm install --prefix backend",
+    "start": "npm run start --prefix backend",
+    "dev": "npm run dev --prefix backend",
+    "test": "npm run test --prefix backend"
+  }
+}
