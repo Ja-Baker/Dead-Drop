@@ -1,0 +1,149 @@
+.vault-detail-page {
+  min-height: 100vh;
+  background-color: var(--void-black);
+}
+
+.vault-detail-content {
+  padding: var(--space-xl) var(--space-lg);
+  padding-bottom: var(--space-3xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.vault-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+  border: var(--border-thick) solid var(--blood-red);
+  background-color: var(--ash-gray);
+}
+
+.vault-header-emoji {
+  font-size: 80px;
+  line-height: 1;
+  filter: drop-shadow(0 0 12px var(--blood-red));
+}
+
+.vault-header-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.vault-header-name {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  color: var(--ghost-white);
+  margin: 0;
+  letter-spacing: 0.05em;
+  word-break: break-word;
+}
+
+.vault-header-meta {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--corpse-gray);
+  display: flex;
+  gap: var(--space-sm);
+  text-transform: uppercase;
+}
+
+.vault-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.vault-empty {
+  padding: var(--space-3xl) var(--space-lg);
+  text-align: center;
+  border: var(--border-thick) dashed var(--corpse-gray);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.vault-empty-icon {
+  font-size: 64px;
+  line-height: 1;
+  margin: 0;
+  opacity: 0.3;
+}
+
+.vault-empty-text {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--corpse-gray);
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+.vault-empty-subtext {
+  font-size: var(--text-sm);
+  color: var(--corpse-gray);
+  font-style: italic;
+  margin: 0;
+}
+
+.content-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.content-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md);
+}
+
+.content-type {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--blood-red);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.content-name {
+  font-size: var(--text-sm);
+  color: var(--ghost-white);
+  flex: 1;
+  text-align: right;
+  word-break: break-word;
+}
+
+.vault-danger-zone {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-xl);
+  border-top: var(--border-thick) solid var(--corpse-gray);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.vault-error {
+  padding: var(--space-3xl);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+.vault-error p:first-child {
+  font-size: 80px;
+  margin: 0;
+}
+
+.vault-error p:nth-child(2) {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--corpse-gray);
+  margin: 0;
+}

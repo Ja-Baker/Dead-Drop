@@ -1,0 +1,21 @@
+.card {
+  background-color: var(--ash-gray);
+  border: var(--border-thick) solid var(--corpse-gray);
+  padding: var(--space-md);
+  position: relative;
+  transition: all var(--transition-base);
+}
+
+.card-hoverable {
+  cursor: pointer;
+}
+
+.card-hoverable:hover {
+  border-color: var(--blood-red);
+  transform: translateY(-2px);
+  box-shadow: var(--glow-sm);
+}
+
+.card-hoverable:active {
+  transform: translateY(0) scale(0.99);
+}

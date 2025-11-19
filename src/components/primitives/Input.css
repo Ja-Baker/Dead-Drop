@@ -1,0 +1,57 @@
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.input-full {
+  width: 100%;
+}
+
+.input-label {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ghost-white);
+}
+
+.input {
+  width: 100%;
+  padding: var(--space-md);
+  font-size: var(--text-base);
+  font-family: var(--font-body);
+  background-color: var(--ash-gray);
+  color: var(--ghost-white);
+  border: var(--border-thick) solid var(--corpse-gray);
+  transition: all var(--transition-fast);
+}
+
+.input::placeholder {
+  color: var(--corpse-gray);
+}
+
+.input:focus {
+  border-color: var(--blood-red);
+  box-shadow: var(--glow-sm);
+  outline: none;
+}
+
+.input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.input-error {
+  border-color: var(--blood-red);
+  animation: shake 0.5s;
+}
+
+.input-error-text {
+  font-size: var(--text-sm);
+  color: var(--blood-red);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}

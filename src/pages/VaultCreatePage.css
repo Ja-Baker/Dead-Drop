@@ -1,0 +1,118 @@
+.vault-create-page {
+  min-height: 100vh;
+  background-color: var(--void-black);
+}
+
+.vault-create-content {
+  padding: var(--space-xl) var(--space-lg);
+  padding-bottom: var(--space-3xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.create-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.create-label {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  color: var(--ghost-white);
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+.emoji-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-sm);
+}
+
+.emoji-option {
+  aspect-ratio: 1;
+  font-size: 48px;
+  background-color: var(--ash-gray);
+  border: var(--border-thick) solid var(--corpse-gray);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.emoji-option:hover {
+  border-color: var(--ghost-white);
+  transform: scale(1.05);
+}
+
+.emoji-option.selected {
+  border-color: var(--blood-red);
+  background-color: var(--void-black);
+  box-shadow: var(--glow-sm);
+}
+
+.emoji-option:active {
+  transform: scale(0.95);
+}
+
+.trigger-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  border: var(--border-thick) solid var(--corpse-gray);
+  background-color: var(--ash-gray);
+}
+
+.trigger-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: transparent;
+  border: none;
+  border-bottom: var(--border-thin) solid var(--corpse-gray);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.trigger-option:last-child {
+  border-bottom: none;
+}
+
+.trigger-option:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.trigger-option.selected {
+  background-color: var(--void-black);
+}
+
+.trigger-radio {
+  font-size: var(--text-2xl);
+  color: var(--corpse-gray);
+  line-height: 1;
+}
+
+.trigger-option.selected .trigger-radio {
+  color: var(--blood-red);
+}
+
+.trigger-label {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  color: var(--ghost-white);
+  letter-spacing: 0.05em;
+  flex: 1;
+  text-align: left;
+}
+
+.create-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}

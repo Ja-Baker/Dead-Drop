@@ -1,0 +1,60 @@
+:root {
+  /* Colors - Emo Goth Palette */
+  --void-black: #000000;
+  --ghost-white: #FFFFFF;
+  --blood-red: #FF0000;
+  --crimson: #DC143C;
+  --ash-gray: #1a1a1a;
+  --corpse-gray: #666666;
+  --neon-red: #FF0033;
+  --dark-red: #8B0000;
+
+  /* Typography */
+  --font-display: 'Impact', 'Helvetica Neue', Arial Black, sans-serif;
+  --font-body: Arial, Helvetica, sans-serif;
+  --font-mono: 'Courier New', Courier, monospace;
+
+  /* Font Sizes - Aggressive Scale */
+  --text-xs: 10px;
+  --text-sm: 12px;
+  --text-base: 16px;
+  --text-lg: 20px;
+  --text-xl: 24px;
+  --text-2xl: 32px;
+  --text-3xl: 48px;
+  --text-4xl: 64px;
+
+  /* Spacing - Tight Grid */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* Borders - THICK */
+  --border-thin: 2px;
+  --border-thick: 4px;
+  --border-heavy: 6px;
+
+  /* Shadows - Red Glows */
+  --glow-sm: 0 0 8px var(--neon-red);
+  --glow-md: 0 0 16px var(--blood-red);
+  --glow-lg: 0 0 24px var(--blood-red), 0 0 48px var(--crimson);
+
+  /* Mobile Container */
+  --mobile-width: 375px;
+  --mobile-max-width: 430px;
+
+  /* Z-index Scale */
+  --z-base: 1;
+  --z-nav: 100;
+  --z-modal: 1000;
+  --z-toast: 2000;
+
+  /* Transitions - Aggressive */
+  --transition-fast: 0.1s cubic-bezier(0.4, 0, 0.6, 1);
+  --transition-base: 0.2s cubic-bezier(0.4, 0, 0.6, 1);
+  --transition-slow: 0.3s cubic-bezier(0.4, 0, 0.6, 1);
+}

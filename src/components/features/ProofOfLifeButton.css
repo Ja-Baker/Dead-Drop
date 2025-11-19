@@ -1,0 +1,98 @@
+.proof-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: var(--space-xl) 0;
+}
+
+.proof-button {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  background-color: var(--void-black);
+  border: var(--border-heavy) solid var(--blood-red);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.proof-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255, 0, 0, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.proof-button:hover::before {
+  opacity: 1;
+}
+
+.proof-button:hover {
+  border-color: var(--neon-red);
+  box-shadow: var(--glow-lg);
+  transform: scale(1.02);
+}
+
+.proof-button:active {
+  transform: scale(0.98);
+}
+
+.proof-button.clicked {
+  background-color: var(--blood-red);
+  animation: flash-red 0.3s ease-out;
+}
+
+.proof-icon {
+  font-size: 80px;
+  line-height: 1;
+  filter: drop-shadow(0 0 10px var(--blood-red));
+  transition: all var(--transition-base);
+}
+
+.proof-button.clicked .proof-icon {
+  transform: rotate(360deg) scale(1.2);
+}
+
+.proof-text {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 900;
+  color: var(--ghost-white);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.proof-subtext {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--corpse-gray);
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+}
+
+.proof-button.clicked .proof-subtext {
+  color: var(--ghost-white);
+}
+
+@media (max-width: 375px) {
+  .proof-button {
+    max-width: 280px;
+  }
+
+  .proof-icon {
+    font-size: 64px;
+  }
+
+  .proof-text {
+    font-size: var(--text-xl);
+  }
+}

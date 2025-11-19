@@ -1,0 +1,107 @@
+.dashboard-page {
+  min-height: 100vh;
+  background-color: var(--void-black);
+  padding-bottom: 70px; /* Space for bottom nav */
+}
+
+.dashboard-content {
+  padding: var(--space-xl) var(--space-lg);
+  padding-bottom: var(--space-3xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.dashboard-status {
+  text-align: center;
+  padding: var(--space-lg);
+  border: var(--border-thick) solid var(--corpse-gray);
+  background-color: var(--ash-gray);
+}
+
+.status-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--ghost-white);
+  margin: 0 0 var(--space-sm) 0;
+  letter-spacing: 0.05em;
+}
+
+.status-subtitle {
+  font-size: var(--text-sm);
+  color: var(--corpse-gray);
+  font-family: var(--font-mono);
+  margin: 0;
+}
+
+.dashboard-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-md);
+  border-bottom: var(--border-thin) solid var(--blood-red);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--ghost-white);
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+.section-count {
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  color: var(--blood-red);
+  font-weight: 700;
+}
+
+.vaults-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+}
+
+.empty-state {
+  padding: var(--space-3xl) var(--space-lg);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.empty-icon {
+  font-size: 80px;
+  line-height: 1;
+  margin: 0;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--corpse-gray);
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+.empty-subtext {
+  font-size: var(--text-sm);
+  color: var(--corpse-gray);
+  font-style: italic;
+  margin: 0;
+}
+
+@media (max-width: 375px) {
+  .vaults-grid {
+    grid-template-columns: 1fr;
+  }
+}
