@@ -120,7 +120,7 @@ router.get(
           isPublic: vault.is_public,
           customSlug: vault.custom_slug,
         },
-        content: contentResult.rows.map((c) => ({
+        content: contentResult.rows.map((c: any) => ({
           id: c.id,
           type: c.type,
           filePath: c.file_path,
@@ -128,11 +128,11 @@ router.get(
           displayOrder: c.display_order,
           createdAt: c.created_at,
         })),
-        reactions: reactionsResult.rows.reduce((acc, r) => {
+        reactions: reactionsResult.rows.reduce((acc: Record<string, number>, r: any) => {
           acc[r.reaction] = parseInt(r.count);
           return acc;
         }, {} as Record<string, number>),
-        comments: commentsResult.rows.map((c) => ({
+        comments: commentsResult.rows.map((c: any) => ({
           id: c.id,
           content: c.content,
           parentCommentId: c.parent_comment_id,

@@ -62,7 +62,7 @@ router.get('/status', authenticate, async (req: AuthRequest, res: Response, next
     res.json({
       daysSinceActivity,
       lastActivity,
-      activeTriggers: triggersResult.rows.map((t) => ({
+      activeTriggers: triggersResult.rows.map((t: any) => ({
         id: t.id,
         vaultId: t.vault_id,
         vaultName: t.vault_name,
@@ -163,9 +163,9 @@ router.post(
 router.post(
   '/cancel',
   authenticate,
-  async (req: AuthRequest, res: Response, next) => {
+  async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
-      const { triggerId } = req.body;
+      const { triggerId } = req.body as { triggerId: string };
       const userId = req.userId!;
 
       if (!triggerId) {
@@ -231,7 +231,7 @@ router.get('/history', authenticate, async (req: AuthRequest, res: Response, nex
     );
 
     res.json({
-      triggers: result.rows.map((t) => ({
+      triggers: result.rows.map((t: any) => ({
         id: t.id,
         vaultId: t.vault_id,
         vaultName: t.vault_name,

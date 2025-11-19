@@ -62,7 +62,7 @@ router.get('/', authenticate, async (req: AuthRequest, res: Response, next) => {
     );
 
     res.json({
-      vaults: result.rows.map((v) => ({
+      vaults: result.rows.map((v: any) => ({
         id: v.id,
         name: v.name,
         icon: v.icon,
@@ -366,7 +366,7 @@ router.get('/:id/preview', authenticate, async (req: AuthRequest, res: Response,
         isEncrypted: vault.is_encrypted,
         isPublic: vault.is_public,
       },
-      content: contentResult.rows.map((c) => ({
+      content: contentResult.rows.map((c: any) => ({
         id: c.id,
         type: c.type,
         filePath: c.file_path,

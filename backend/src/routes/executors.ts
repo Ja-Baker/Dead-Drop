@@ -51,7 +51,7 @@ router.get('/', authenticate, async (req: AuthRequest, res: Response, next) => {
     );
 
     res.json({
-      executors: result.rows.map((e) => ({
+      executors: result.rows.map((e: any) => ({
         id: e.id,
         email: e.email,
         phone: e.phone,

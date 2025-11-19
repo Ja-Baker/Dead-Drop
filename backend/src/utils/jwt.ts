@@ -14,7 +14,7 @@ export const generateAccessToken = (payload: TokenPayload): string => {
     throw new Error('JWT_SECRET not configured');
   }
 
-  return jwt.sign(payload, secret, { expiresIn });
+  return jwt.sign(payload, secret, { expiresIn } as jwt.SignOptions);
 };
 
 export const generateRefreshToken = (payload: TokenPayload): string => {
@@ -25,7 +25,7 @@ export const generateRefreshToken = (payload: TokenPayload): string => {
     throw new Error('JWT_REFRESH_SECRET not configured');
   }
 
-  return jwt.sign(payload, secret, { expiresIn });
+  return jwt.sign(payload, secret, { expiresIn } as jwt.SignOptions);
 };
 
 export const verifyAccessToken = (token: string): TokenPayload => {
