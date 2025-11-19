@@ -18,11 +18,11 @@ export const FunPage = () => {
       <div className="fun-content">
         <div className="fun-header">
           <h2 className="fun-title rgb-split">EMBRACE THE VOID</h2>
-          <p className="fun-subtitle">DARK HUMOR & CHAOS</p>
+          <p className="fun-subtitle">IT'S COMING FOR US ALL</p>
         </div>
 
         {/* Legacy Score */}
-        <LegacyScore
+        <LegacyScore 
           vaultCount={vaults.length}
           contentCount={contentCount}
           daysSinceCheckIn={daysSinceCheckIn}
