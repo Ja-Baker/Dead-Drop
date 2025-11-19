@@ -9,8 +9,11 @@ class ApiClient {
   private client: AxiosInstance;
 
   constructor() {
+    // In production, use relative path. In dev, use full URL
+    const baseURL = API_BASE_URL ? `${API_BASE_URL}/api` : '/api';
+    
     this.client = axios.create({
-      baseURL: `${API_BASE_URL}/api`,
+      baseURL,
       timeout: 30000,
       headers: {
         'Content-Type': 'application/json',
@@ -40,7 +43,8 @@ class ApiClient {
           const { refreshToken, logout } = useAuthStore.getState();
           if (refreshToken) {
             try {
-              const response = await axios.post(`${API_BASE_URL}/api/auth/refresh`, {
+              const refreshUrl = API_BASE_URL ? `${API_BASE_URL}/api/auth/refresh` : '/api/auth/refresh';
+              const response = await axios.post(refreshUrl, {
                 refreshToken,
               });
               const { accessToken, refreshToken: newRefreshToken } = response.data;
