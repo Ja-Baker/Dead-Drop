@@ -1,0 +1,10 @@
+node_modules
+npm-debug.log
+.git
+mobile
+Desc
+Prompt
+README.md
+railway.toml
+package.json
+package-lock.json
