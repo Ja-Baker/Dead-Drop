@@ -1,4 +1,4 @@
-import { Router, Response } from 'express';
+import { Router, Response, NextFunction } from 'express';
 import bcrypt from 'bcrypt';
 import speakeasy from 'speakeasy';
 import QRCode from 'qrcode';
