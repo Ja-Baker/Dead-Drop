@@ -56,6 +56,14 @@ router.post(
         throw new AppError('Age verification required. Must be 18+', 400);
       }
 
+      // Check database connection
+      try {
+        await query('SELECT 1');
+      } catch (dbError: any) {
+        console.error('Database not ready:', dbError);
+        throw new AppError('Database is not available. Please try again in a moment.', 503);
+      }
+
       // Check if user exists
       const existingUser = await query(
         'SELECT id FROM users WHERE email = $1',
@@ -116,6 +124,14 @@ router.post(
   async (req, res: Response, next: NextFunction) => {
     try {
       const { email, password } = req.body;
+
+      // Check database connection
+      try {
+        await query('SELECT 1');
+      } catch (dbError: any) {
+        console.error('Database not ready:', dbError);
+        throw new AppError('Database is not available. Please try again in a moment.', 503);
+      }
 
       // Find user
       const result = await query(

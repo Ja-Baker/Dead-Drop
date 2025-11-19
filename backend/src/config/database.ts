@@ -24,14 +24,31 @@ const getDatabaseUrl = () => {
   return null;
 };
 
+const dbUrl = getDatabaseUrl();
+
 export const pool = new Pool({
-  connectionString: getDatabaseUrl() || undefined,
+  connectionString: dbUrl || undefined,
   ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
   // Connection pool settings for Railway
   max: 20,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 10000,
 });
+
+// Track connection status
+let isConnected = false;
+
+pool.on('connect', () => {
+  isConnected = true;
+  console.log('Database pool connected');
+});
+
+pool.on('error', (err) => {
+  isConnected = false;
+  console.error('Database pool error:', err);
+});
+
+export const isDatabaseConnected = () => isConnected;
 
 export const query = async (text: string, params?: any[]) => {
   const start = Date.now();
