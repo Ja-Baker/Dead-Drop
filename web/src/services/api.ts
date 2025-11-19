@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosError } from 'axios';
 import { useAuthStore } from '../store/authStore';
 
 // Auto-detect API URL: use same origin in production, or env variable
-const API_BASE_URL = import.meta.env.VITE_API_URL || 
+const API_BASE_URL = (import.meta.env.VITE_API_URL as string | undefined) || 
   (import.meta.env.PROD ? '' : 'http://localhost:3000');
 
 class ApiClient {
