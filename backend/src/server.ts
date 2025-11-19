@@ -54,12 +54,14 @@ if (existsSync(webBuildPath)) {
   app.use(express.static(webBuildPath));
   
   // Serve index.html for all non-API routes (SPA routing)
-  app.get('*', (req: Request, res: Response) => {
+  app.get('*', (req: Request, res: Response, next: NextFunction) => {
     // Don't serve index.html for API routes
     if (req.path.startsWith('/api') || req.path === '/health') {
       return res.status(404).json({ error: 'Not found. This endpoint does not exist.' });
     }
-    res.sendFile(join(webBuildPath, 'index.html'));
+    res.sendFile(join(webBuildPath, 'index.html'), (err) => {
+      if (err) next(err);
+    });
   });
 } else {
   // Fallback if web build doesn't exist
@@ -82,13 +84,13 @@ if (existsSync(webBuildPath)) {
     });
   });
   
-  // 404 handler
-  app.use((req: Request, res: Response) => {
+  // 404 handler for API routes
+  app.use('/api/*', (req: Request, res: Response) => {
     res.status(404).json({ error: 'Not found. This endpoint does not exist.' });
   });
 }
 
-// Error handler
+// Error handler (must be last)
 app.use(errorHandler);
 
 // Retry connection with exponential backoff

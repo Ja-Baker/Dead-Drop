@@ -24,14 +24,20 @@ export const errorHandler = (
   console.error('Error:', {
     message,
     statusCode,
-    stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
+    stack: err.stack,
     path: req.path,
     method: req.method,
+    body: req.body,
   });
 
+  // Don't send stack trace in production, but log it
   res.status(statusCode).json({
     error: message,
-    ...(process.env.NODE_ENV === 'development' && { stack: err.stack }),
+    ...(process.env.NODE_ENV === 'development' && { 
+      stack: err.stack,
+      path: req.path,
+      method: req.method,
+    }),
   });
 };
 

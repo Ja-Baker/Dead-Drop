@@ -48,6 +48,10 @@ router.post(
     try {
       const { email, password, ageVerified } = req.body;
 
+      if (!email || !password) {
+        throw new AppError('Email and password are required', 400);
+      }
+
       if (!ageVerified) {
         throw new AppError('Age verification required. Must be 18+', 400);
       }
