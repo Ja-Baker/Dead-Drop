@@ -1,0 +1,490 @@
+AI BUILD PROMPT: DEAD DROP
+A Digital Legacy Platform
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PROJECT BRIEF
+
+Build a mobile-first application called DEAD DROP that allows users to create 
+posthumous content releases. Think: dead man's switch meets meme archive meets 
+digital will.
+
+Core concept: Users curate vaults of digital content (memes, messages, media) 
+that get released to chosen "executors" after death or extended inactivity.
+
+Brand tone: MSCHF-style — brutally honest, darkly humorous, zero corporate speak, 
+maximum cultural awareness.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TECHNICAL ARCHITECTURE
+
+PLATFORM REQUIREMENTS:
+- React Native for iOS (priority) and Android
+- Node.js/Express backend
+- PostgreSQL database
+- AWS S3 for media storage
+- Redis for session management and trigger monitoring
+- End-to-end encryption (AES-256)
+
+CORE SYSTEMS TO BUILD:
+
+1. USER AUTHENTICATION
+   - Email/password signup
+   - 2FA mandatory for premium users
+   - Biometric unlock for app access
+   - Session management with auto-logout
+
+2. VAULT MANAGEMENT SYSTEM
+   - Create/edit/delete vaults
+   - Upload multiple content types:
+     * Images (JPEG, PNG, GIF, WebP)
+     * Videos (MP4, MOV - max 5min for premium)
+     * Audio (MP3, M4A - voice memos)
+     * Text notes (encrypted)
+     * URLs (auto-preview generation)
+   - Folder organization within vaults
+   - Preview mode (see vault as executor would)
+   - Content encryption at rest
+
+3. EXECUTOR SYSTEM
+   - Invite executors via email/phone
+   - Multi-tier access levels:
+     * Primary (full access, can trigger)
+     * Curator (specific vaults only)
+     * Viewer (read-only access post-release)
+   - Executor dashboard showing:
+     * User's last activity timestamp
+     * Assigned vaults
+     * Trigger status
+   - Emergency override (requires 3/5 executor vote)
+
+4. TRIGGER MECHANISM
+   - Automated inactivity detection:
+     * Track app opens, "proof of life" check-ins
+     * Configurable thresholds: 90, 180, 365 days
+     * Progressive warnings to user (email/push at 60, 75, 85 days)
+   - Manual triggers:
+     * Death certificate upload + verification
+     * Multi-executor confirmation vote
+     * Scheduled releases (date-based)
+   - 72-hour cancellation window:
+     * User can abort trigger from any logged-in device
+     * Executors notified of cancellation
+   - Notification service for executors
+
+5. MEMORIAL WALL (POST-RELEASE)
+   - Public or private vault pages
+   - Custom URL slugs (premium)
+   - Social features:
+     * Emoji reactions
+     * Comment threads
+     * Upload tribute content
+     * Share to social media
+   - Content moderation tools
+   - Analytics (views, engagement)
+
+6. PROOF OF LIFE SYSTEM
+   - Monthly check-in requirement
+   - Push notification + email reminders
+   - Gamification: streak counter, "still alive" badges
+   - Snooze options (vacation mode)
+   - Integration with device activity (optional)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+UI/UX SPECIFICATIONS
+
+DESIGN PRINCIPLES:
+- Brutalist minimalism
+- High contrast (black/white/red)
+- Zero rounded corners on primary UI elements
+- Harsh typography (Helvetica Bold, Arial)
+- No loading spinners - use text ("LOADING YOUR DEATH...")
+- Error states are blunt ("THIS FUCKED UP")
+
+KEY SCREENS TO BUILD:
+
+1. ONBOARDING
+   - Dark humor welcome ("Everyone Dies")
+   - 3-screen flow:
+     * Why this exists
+     * How it works
+     * Create first vault
+   - No skip option on legal disclaimer
+
+2. HOME / DASHBOARD
+   - Vault grid (2-column)
+   - Prominent "PROOF OF LIFE" button at top
+   - Last check-in timestamp
+   - Executor count badge
+   - Bottom nav: Vaults / Executors / Settings / Profile
+
+3. VAULT CREATION
+   - Name vault (text input)
+   - Choose icon/emoji
+   - Add content (upload/link/text)
+   - Set trigger conditions
+   - Assign executors
+   - Preview button
+
+4. CONTENT UPLOAD
+   - Drag and drop (web)
+   - Multi-select (mobile)
+   - Progress indicators
+   - Auto-save drafts
+   - Content type icons
+
+5. EXECUTOR MANAGEMENT
+   - List view with access levels
+   - Invite button (email/SMS)
+   - Pending invites status
+   - Remove executor (requires confirmation)
+
+6. SETTINGS
+   - Account details
+   - Security (2FA, biometrics)
+   - Notification preferences
+   - Subscription management
+   - Legal docs (TOS, Privacy)
+   - Delete account (nuclear option)
+
+7. MEMORIAL WALL
+   - Vault content display (chronological)
+   - Reaction bar
+   - Comment section
+   - Share options
+   - "Create Your Own" CTA
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+COPY STYLE GUIDE
+
+VOICE ATTRIBUTES:
+- Blunt, never euphemistic
+- Self-aware about being morbid
+- Zero marketing speak
+- Occasional profanity (contextual)
+- Deadpan humor
+
+EXAMPLE MICROCOPY:
+
+Buttons:
+- "CREATE VAULT" not "Get Started"
+- "SEND TO EXECUTORS" not "Share"
+- "I'M STILL ALIVE" not "Check In"
+- "DELETE FOREVER" not "Remove"
+
+Error Messages:
+- "Upload failed. Try again or give up."
+- "Password wrong. You have 2 tries left."
+- "This vault is empty. Add something or delete it."
+
+Success Messages:
+- "Vault created. Plan accordingly."
+- "Executor added. They know now."
+- "Subscription active. You're premium until death."
+
+Notifications:
+- "Haven't seen you in 60 days. Everything ok?"
+- "Someone triggered your vault. Check it?"
+- "Your proof of life streak: 43 days"
+
+Empty States:
+- "No vaults yet. Immortal?"
+- "No executors assigned. Trust issues?"
+- "No content uploaded. Say something."
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SUBSCRIPTION TIERS
+
+FREE TIER: "BASIC DEATH"
+Features:
+- 3 vaults maximum
+- 25 total content pieces
+- 3 executors
+- 6-month inactivity trigger only
+- Standard memorial page
+- Ads on memorial wall
+
+PREMIUM: "ETERNAL PLAN" ($49/year)
+Features:
+- Unlimited vaults
+- Unlimited content
+- Unlimited executors
+- Custom trigger timings
+- Video uploads (5min max)
+- Custom memorial domain
+- No ads
+- Priority support
+- Advanced encryption
+- Collaborative vaults
+
+ENTERPRISE: "FAMILY DEATH PACT" ($199/year)
+Features:
+- 5 linked accounts
+- Shared executor network
+- Legal document integration
+- Dedicated onboarding
+- White-glove support
+- Custom contracts
+
+PAYMENT:
+- Stripe integration
+- Annual billing only (no monthly)
+- Auto-renewal with warning emails
+- Subscription survives user death (executors can access)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SECURITY & LEGAL REQUIREMENTS
+
+ENCRYPTION:
+- AES-256 for content at rest
+- TLS 1.3 for data in transit
+- Client-side encryption before upload for "secure vaults"
+- Zero-knowledge architecture for premium encrypted vaults
+
+PRIVACY:
+- GDPR compliant
+- CCPA compliant
+- Right to deletion (even after death with executor consent)
+- No data selling
+- Transparent data usage
+
+CONTENT MODERATION:
+- AI-based screening for illegal content
+- Report/flag system on memorial walls
+- Human review queue
+- Content policy enforcement (no hate speech, CSAM, violence)
+
+LEGAL PROTECTIONS:
+- Terms of Service including:
+  * Liability limitations
+  * Content ownership
+  * Executor authority boundaries
+  * False death claim consequences
+  * Dispute resolution
+- Privacy Policy
+- Acceptable Use Policy
+- Death verification process documentation
+
+AGE VERIFICATION:
+- 18+ required for account
+- Government ID check for premium features
+
+MENTAL HEALTH:
+- In-app resources (suicide prevention hotlines)
+- Crisis text line integration
+- Warning prompts for certain content
+- Partnership with mental health orgs
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ANALYTICS & MONITORING
+
+TRACK:
+- User engagement:
+  * Daily/monthly active users
+  * Vaults created per user
+  * Content uploaded (by type)
+  * Proof of life check-in rate
+  * Session length
+- Growth metrics:
+  * New signups
+  * Executor invites sent
+  * Viral coefficient
+  * Conversion rate (free to premium)
+  * Churn rate
+- Technical:
+  * API response times
+  * Error rates
+  * Storage usage
+  * Trigger success rate
+- Financial:
+  * MRR/ARR
+  * CAC
+  * LTV
+  * Payment failures
+
+TOOLS:
+- Mixpanel or Amplitude for product analytics
+- Sentry for error tracking
+- CloudWatch for infrastructure
+- Custom dashboard for trigger monitoring
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+API SPECIFICATIONS
+
+ENDPOINTS TO BUILD:
+
+Authentication:
+POST /api/auth/signup
+POST /api/auth/login
+POST /api/auth/logout
+POST /api/auth/refresh
+POST /api/auth/verify-2fa
+
+Vaults:
+GET /api/vaults
+POST /api/vaults
+GET /api/vaults/:id
+PUT /api/vaults/:id
+DELETE /api/vaults/:id
+POST /api/vaults/:id/content
+DELETE /api/vaults/:id/content/:contentId
+GET /api/vaults/:id/preview
+
+Executors:
+GET /api/executors
+POST /api/executors/invite
+DELETE /api/executors/:id
+PUT /api/executors/:id/permissions
+POST /api/executors/vote-trigger
+
+Triggers:
+GET /api/triggers/status
+POST /api/triggers/proof-of-life
+POST /api/triggers/manual
+POST /api/triggers/cancel
+GET /api/triggers/history
+
+Memorial:
+GET /api/memorial/:vaultId
+POST /api/memorial/:vaultId/react
+POST /api/memorial/:vaultId/comment
+GET /api/memorial/:vaultId/stats
+
+Subscription:
+GET /api/subscription
+POST /api/subscription/checkout
+POST /api/subscription/cancel
+GET /api/subscription/invoices
+
+RATE LIMITING:
+- Auth endpoints: 5 requests/minute
+- Upload endpoints: 20 requests/hour
+- API calls: 1000 requests/hour (authenticated)
+- Public memorial pages: 100 requests/minute
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+LAUNCH FEATURES (MVP)
+
+MUST HAVE:
+✓ User signup/login
+✓ Create vaults
+✓ Upload content (images, text)
+✓ Invite executors
+✓ Set inactivity trigger
+✓ Proof of life check-in
+✓ Basic memorial wall
+✓ Free tier functionality
+✓ Payment integration
+
+NICE TO HAVE (V1.1):
+- Video uploads
+- Scheduled triggers
+- Collaborative vaults
+- Custom domains
+- Social sharing
+- Analytics dashboard
+
+FUTURE (V2.0+):
+- AI chatbot trained on vault content
+- VR memorial spaces
+- Integration with legal will services
+- Physical merchandise
+- API for third-party apps
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SPECIAL INSTRUCTIONS
+
+BRAND CONSISTENCY:
+- Every UI element should feel slightly uncomfortable
+- No hand-holding or "delight" animations
+- Copy should always acknowledge the morbid reality
+- Errors are honest, never apologetic
+- Success feels matter-of-fact
+
+PERFORMANCE:
+- <2s page load times
+- <100ms API responses
+- Aggressive caching for memorial pages
+- CDN for media content
+- Lazy loading for vault grids
+
+ACCESSIBILITY:
+- WCAG 2.1 AA compliance
+- Screen reader optimization
+- Keyboard navigation
+- High contrast mode
+- Closed captions on videos
+
+TESTING:
+- Unit tests for critical paths
+- Integration tests for triggers
+- End-to-end tests for core flows
+- Load testing for memorial walls
+- Security penetration testing
+
+DOCUMENTATION:
+- API documentation (OpenAPI spec)
+- Developer onboarding guide
+- Architecture decision records
+- Runbook for production incidents
+- User guide (minimal, sardonic)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BUILD PRIORITIES
+
+SPRINT 1 (Weeks 1-2):
+- Auth system
+- Database schema
+- Vault CRUD operations
+- Basic UI framework
+
+SPRINT 2 (Weeks 3-4):
+- Content upload system
+- Executor invites
+- Proof of life mechanism
+- Trigger infrastructure
+
+SPRINT 3 (Weeks 5-6):
+- Memorial wall
+- Subscription integration
+- Email notifications
+- Security hardening
+
+SPRINT 4 (Weeks 7-8):
+- Polish UI
+- Performance optimization
+- Testing
+- Beta launch prep
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+FINAL NOTES
+
+This is not a typical app build. The product is inherently provocative. 
+The design should make people slightly uncomfortable. The copy should never 
+soften the reality of death.
+
+Build something that feels like MSCHF made it:
+- Stripped down
+- Brutally honest
+- Culturally aware
+- Technically solid
+- Slightly dangerous
+
+Death is inevitable. This app should feel inevitable too.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DEAD DROP
+Build it.
+🪦
