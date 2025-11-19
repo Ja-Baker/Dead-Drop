@@ -25,6 +25,39 @@ export default function LoginPage() {
     }
   };
 
+  // BYPASS BUTTON - REMOVE THIS FOR PRODUCTION
+  const handleBypass = async () => {
+    setLoading(true);
+    try {
+      // Create test account and login
+      const testEmail = `test-${Date.now()}@test.com`;
+      const testPassword = 'test123456';
+      
+      try {
+        await authService.signup({
+          email: testEmail,
+          password: testPassword,
+          ageVerified: true,
+        });
+      } catch (signupErr: any) {
+        // Account might already exist, try login
+        if (signupErr.response?.status !== 409) {
+          throw signupErr;
+        }
+        await authService.login({
+          email: testEmail,
+          password: testPassword,
+        });
+      }
+      
+      navigate('/');
+    } catch (err: any) {
+      setError(err.response?.data?.error || 'Bypass failed. Try again or give up.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="auth-page">
       <div className="auth-container">
@@ -62,6 +95,21 @@ export default function LoginPage() {
             {loading ? 'LOADING YOUR DEATH...' : 'LOGIN'}
           </button>
         </form>
+
+        {/* BYPASS BUTTON - REMOVE THIS ENTIRE SECTION FOR PRODUCTION */}
+        <div style={{ marginTop: '20px', padding: '16px', border: '2px dashed #ff0000', textAlign: 'center' }}>
+          <p style={{ fontSize: '12px', color: '#ff0000', marginBottom: '12px', textTransform: 'uppercase' }}>
+            ⚠️ TEST BYPASS - REMOVE IN PRODUCTION
+          </p>
+          <button 
+            onClick={handleBypass} 
+            className="btn btn-secondary" 
+            disabled={loading}
+            style={{ fontSize: '12px', padding: '8px 16px' }}
+          >
+            {loading ? 'CREATING TEST ACCOUNT...' : 'BYPASS (CREATE TEST ACCOUNT)'}
+          </button>
+        </div>
 
         <div className="auth-footer">
           <p>Don't have an account?</p>
