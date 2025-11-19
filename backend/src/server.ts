@@ -52,24 +52,67 @@ app.use((req: Request, res: Response) => {
 // Error handler
 app.use(errorHandler);
 
+// Retry connection with exponential backoff
+const retryConnection = async (
+  fn: () => Promise<any>,
+  maxRetries: number = 10,
+  delay: number = 2000
+): Promise<void> => {
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      await fn();
+      return;
+    } catch (error) {
+      if (i === maxRetries - 1) {
+        throw error;
+      }
+      console.log(`Connection attempt ${i + 1} failed, retrying in ${delay}ms...`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+      delay = Math.min(delay * 1.5, 10000); // Exponential backoff, max 10s
+    }
+  }
+};
+
 // Start server
 const startServer = async () => {
-  try {
-    // Test database connection
-    await pool.query('SELECT NOW()');
-    console.log('Database connected');
+  // Start the server first (so Railway health checks pass)
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+  });
 
-    // Connect Redis
-    await connectRedis();
-    console.log('Redis connected');
-
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-      console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+  // Connect to database with retries
+  if (process.env.DATABASE_URL) {
+    retryConnection(
+      async () => {
+        await pool.query('SELECT NOW()');
+        console.log('Database connected');
+      },
+      10,
+      2000
+    ).catch((error) => {
+      console.error('Failed to connect to database after retries:', error);
+      console.error('Server will continue but database operations will fail');
     });
-  } catch (error) {
-    console.error('Failed to start server:', error);
-    process.exit(1);
+  } else {
+    console.warn('DATABASE_URL not set, database features will not work');
+  }
+
+  // Connect to Redis with retries (optional)
+  if (process.env.REDIS_URL) {
+    retryConnection(
+      async () => {
+        await connectRedis();
+        console.log('Redis connected');
+      },
+      5,
+      2000
+    ).catch((error) => {
+      console.error('Failed to connect to Redis after retries:', error);
+      console.warn('Server will continue but Redis features will not work');
+    });
+  } else {
+    console.warn('REDIS_URL not set, Redis features will not work');
   }
 };
 
