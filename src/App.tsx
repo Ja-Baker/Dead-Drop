@@ -9,6 +9,7 @@ import { VaultDetailPage } from './pages/VaultDetailPage';
 import { ExecutorsPage } from './pages/ExecutorsPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { MemorialPage } from './pages/MemorialPage';
+import { FunPage } from './pages/FunPage';
 
 // Protected route wrapper
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -91,6 +92,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <MemorialPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/fun"
+            element={
+              <ProtectedRoute>
+                <FunPage />
               </ProtectedRoute>
             }
           />

@@ -1,0 +1,96 @@
+.death-simulator {
+  padding: var(--space-xl);
+  border: var(--border-heavy) solid var(--blood-red);
+  background: linear-gradient(135deg, var(--void-black) 0%, var(--ash-gray) 100%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.death-simulator::before {
+  content: '☠️';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 300px;
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+.simulator-title {
+  font-size: var(--text-2xl);
+  color: var(--blood-red);
+  text-align: center;
+  margin: 0;
+  letter-spacing: 0.1em;
+  position: relative;
+  z-index: 1;
+}
+
+.simulator-subtitle {
+  font-size: var(--text-sm);
+  color: var(--corpse-gray);
+  text-align: center;
+  margin: 0;
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+
+.simulating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-2xl) 0;
+}
+
+.simulating-text {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--blood-red);
+  letter-spacing: 0.2em;
+}
+
+.simulating-spinner {
+  font-size: 64px;
+  line-height: 1;
+}
+
+.scenario-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-xl);
+  background-color: var(--ash-gray);
+  border: var(--border-thick) solid var(--blood-red);
+  position: relative;
+  z-index: 1;
+}
+
+.scenario-emoji {
+  font-size: 80px;
+  line-height: 1;
+  filter: drop-shadow(0 0 20px var(--blood-red));
+}
+
+.scenario-cause {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--ghost-white);
+  text-align: center;
+  letter-spacing: 0.05em;
+  text-shadow: 2px 0 0 red, -2px 0 0 cyan;
+}
+
+.scenario-probability {
+  font-family: var(--font-mono);
+  font-size: var(--text-base);
+  color: var(--corpse-gray);
+  text-align: center;
+  margin-top: var(--space-sm);
+}

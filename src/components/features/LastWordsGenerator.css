@@ -1,0 +1,57 @@
+.last-words-generator {
+  padding: var(--space-xl);
+  border: var(--border-thick) solid var(--corpse-gray);
+  background-color: var(--ash-gray);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.generator-title {
+  font-size: var(--text-xl);
+  color: var(--ghost-white);
+  text-align: center;
+  margin: 0;
+  letter-spacing: 0.1em;
+}
+
+.generator-subtitle {
+  font-size: var(--text-sm);
+  color: var(--corpse-gray);
+  text-align: center;
+  margin: 0;
+  font-style: italic;
+}
+
+.words-result {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background-color: var(--void-black);
+  border: var(--border-thick) solid var(--blood-red);
+}
+
+.words-quote {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--ghost-white);
+  text-align: center;
+  line-height: 1.4;
+  padding: var(--space-md) 0;
+}
+
+.words-attribution {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--corpse-gray);
+  text-align: right;
+  font-style: italic;
+}
+
+.words-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}

@@ -9,6 +9,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { label: 'VAULTS', path: '/dashboard', icon: '🪦' },
+  { label: 'GAMES', path: '/fun', icon: '💀' },
   { label: 'EXECUTORS', path: '/executors', icon: '⚰️' },
   { label: 'SETTINGS', path: '/settings', icon: '⚙️' },
 ];
