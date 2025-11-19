@@ -1,7 +1,9 @@
 import axios, { AxiosInstance, AxiosError } from 'axios';
 import { useAuthStore } from '../store/authStore';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+// Auto-detect API URL: use same origin in production, or env variable
+const API_BASE_URL = import.meta.env.VITE_API_URL || 
+  (import.meta.env.PROD ? '' : 'http://localhost:3000');
 
 class ApiClient {
   private client: AxiosInstance;

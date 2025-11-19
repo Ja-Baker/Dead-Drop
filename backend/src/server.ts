@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 import { pool } from './config/database';
 import { connectRedis } from './config/redis';
@@ -24,9 +24,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false, // Allow inline scripts for React
+}));
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: process.env.FRONTEND_URL || '*',
   credentials: true,
 }));
 app.use(express.json({ limit: '10mb' }));
@@ -35,25 +37,6 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // Health check
 app.get('/health', (req: Request, res: Response) => {
   res.json({ status: 'ok', message: 'Still alive' });
-});
-
-// Root endpoint
-app.get('/', (req: Request, res: Response) => {
-  res.json({
-    name: 'Dead Drop API',
-    version: '1.0.0',
-    status: 'alive',
-    message: '🪦 YOUR FINAL DROP',
-    endpoints: {
-      health: '/health',
-      auth: '/api/auth',
-      vaults: '/api/vaults',
-      executors: '/api/executors',
-      triggers: '/api/triggers',
-      memorial: '/api/memorial',
-      subscription: '/api/subscription'
-    }
-  });
 });
 
 // API routes
@@ -65,10 +48,45 @@ app.use('/api/triggers', apiRateLimiter, triggerRoutes);
 app.use('/api/memorial', memorialRoutes);
 app.use('/api/subscription', apiRateLimiter, subscriptionRoutes);
 
-// 404 handler
-app.use((req: Request, res: Response) => {
-  res.status(404).json({ error: 'Not found. This endpoint does not exist.' });
-});
+// Serve static files from web build (if it exists)
+const webBuildPath = join(__dirname, '../../web/dist');
+if (existsSync(webBuildPath)) {
+  app.use(express.static(webBuildPath));
+  
+  // Serve index.html for all non-API routes (SPA routing)
+  app.get('*', (req: Request, res: Response) => {
+    // Don't serve index.html for API routes
+    if (req.path.startsWith('/api') || req.path === '/health') {
+      return res.status(404).json({ error: 'Not found. This endpoint does not exist.' });
+    }
+    res.sendFile(join(webBuildPath, 'index.html'));
+  });
+} else {
+  // Fallback if web build doesn't exist
+  app.get('/', (req: Request, res: Response) => {
+    res.json({
+      name: 'Dead Drop API',
+      version: '1.0.0',
+      status: 'alive',
+      message: '🪦 YOUR FINAL DROP',
+      note: 'Web UI not built. Run: cd web && npm run build',
+      endpoints: {
+        health: '/health',
+        auth: '/api/auth',
+        vaults: '/api/vaults',
+        executors: '/api/executors',
+        triggers: '/api/triggers',
+        memorial: '/api/memorial',
+        subscription: '/api/subscription'
+      }
+    });
+  });
+  
+  // 404 handler
+  app.use((req: Request, res: Response) => {
+    res.status(404).json({ error: 'Not found. This endpoint does not exist.' });
+  });
+}
 
 // Error handler
 app.use(errorHandler);
