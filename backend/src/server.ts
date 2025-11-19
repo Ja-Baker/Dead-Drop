@@ -2,6 +2,8 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 import { pool } from './config/database';
 import { connectRedis } from './config/redis';
 import { errorHandler } from './middleware/errorHandler';
@@ -81,12 +83,40 @@ const startServer = async () => {
     console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
   });
 
-  // Connect to database with retries
-  if (process.env.DATABASE_URL) {
+  // Connect to database with retries and auto-migrate
+  // Check for any database URL (Railway auto-sets these)
+  const dbUrl = process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.POSTGRES_PRIVATE_URL;
+  if (dbUrl) {
     retryConnection(
       async () => {
         await pool.query('SELECT NOW()');
         console.log('Database connected');
+        
+        // Auto-run migrations if tables don't exist
+        try {
+          const tableCheck = await pool.query(`
+            SELECT EXISTS (
+              SELECT FROM information_schema.tables 
+              WHERE table_schema = 'public' 
+              AND table_name = 'users'
+            );
+          `);
+          
+          if (!tableCheck.rows[0].exists) {
+            console.log('Running automatic database migrations...');
+            const migrationSQL = readFileSync(
+              join(__dirname, 'db', 'migrations', '001_initial_schema.sql'),
+              'utf-8'
+            );
+            await pool.query(migrationSQL);
+            console.log('✅ Database migrations completed automatically');
+          } else {
+            console.log('Database tables already exist, skipping migrations');
+          }
+        } catch (migrationError) {
+          console.error('Migration error (non-fatal):', migrationError);
+          // Continue even if migrations fail
+        }
       },
       10,
       2000
@@ -95,11 +125,13 @@ const startServer = async () => {
       console.error('Server will continue but database operations will fail');
     });
   } else {
-    console.warn('DATABASE_URL not set, database features will not work');
+    console.warn('⚠️  No database URL found. Add PostgreSQL service in Railway for database features.');
   }
 
   // Connect to Redis with retries (optional)
-  if (process.env.REDIS_URL) {
+  // Check for any Redis URL (Railway auto-sets these)
+  const redisUrl = process.env.REDIS_URL || process.env.REDISCLOUD_URL;
+  if (redisUrl) {
     retryConnection(
       async () => {
         await connectRedis();
@@ -112,7 +144,7 @@ const startServer = async () => {
       console.warn('Server will continue but Redis features will not work');
     });
   } else {
-    console.warn('REDIS_URL not set, Redis features will not work');
+    console.warn('⚠️  No Redis URL found. Redis features will not work (optional).');
   }
 };
 

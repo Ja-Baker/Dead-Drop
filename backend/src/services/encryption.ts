@@ -7,10 +7,14 @@ export class EncryptionService {
   private key: Buffer;
 
   constructor() {
-    const encryptionKey = process.env.ENCRYPTION_KEY;
-    if (!encryptionKey) {
-      throw new Error('ENCRYPTION_KEY not configured');
-    }
+    // Auto-generate key if not set (for development/testing only)
+    const encryptionKey = process.env.ENCRYPTION_KEY || (() => {
+      if (process.env.NODE_ENV === 'production') {
+        throw new Error('ENCRYPTION_KEY must be set in production');
+      }
+      console.warn('WARNING: Using auto-generated ENCRYPTION_KEY. Set ENCRYPTION_KEY in production!');
+      return 'dev-encryption-key-change-in-production-' + Date.now();
+    })();
 
     // Ensure key is exactly 32 bytes
     this.key = crypto

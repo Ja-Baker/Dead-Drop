@@ -5,8 +5,27 @@ dotenv.config();
 
 const { Pool } = pg;
 
+// Auto-detect Railway PostgreSQL URL if DATABASE_URL not set
+const getDatabaseUrl = () => {
+  if (process.env.DATABASE_URL) {
+    return process.env.DATABASE_URL;
+  }
+  
+  // Try Railway's automatic PostgreSQL variable
+  if (process.env.POSTGRES_URL) {
+    return process.env.POSTGRES_URL;
+  }
+  
+  // Try Railway's PostgreSQL_PRIVATE_URL
+  if (process.env.POSTGRES_PRIVATE_URL) {
+    return process.env.POSTGRES_PRIVATE_URL;
+  }
+  
+  return null;
+};
+
 export const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: getDatabaseUrl() || undefined,
   ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
   // Connection pool settings for Railway
   max: 20,
